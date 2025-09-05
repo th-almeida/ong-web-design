@@ -1,18 +1,22 @@
 "use client"
 
-import { useState } from "react"
-import { ArrowLeft, Bell, BookOpen, Eye, EyeOff, Lock, Palette, Save, Shield, User } from "lucide-react"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Switch } from "@/components/ui/switch"
+import { Textarea } from "@/components/ui/textarea"
+import { ArrowLeft, Bell, BookOpen, Eye, EyeOff, Lock, Palette, Save, Shield, User } from "lucide-react"
+import { useState } from "react"
 
-export default function ConfiguracoesPage() {
+interface ConfiguracoesPageProps {
+  onNavigateBack?: () => void
+}
+
+export default function ConfiguracoesPage({ onNavigateBack }: ConfiguracoesPageProps) {
   const [activeTab, setActiveTab] = useState("perfil")
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
@@ -47,6 +51,12 @@ export default function ConfiguracoesPage() {
   const handleSave = () => {
     console.log("Salvando configurações...")
     // Aqui seria implementada a lógica de salvamento
+  }
+
+  const handleVoltar = () => {
+    if (onNavigateBack) {
+      onNavigateBack()
+    }
   }
 
   const renderPerfil = () => (
@@ -373,7 +383,7 @@ export default function ConfiguracoesPage() {
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" onClick={() => window.history.back()}>
+            <Button variant="ghost" size="sm" onClick={handleVoltar}>
               <ArrowLeft className="w-4 h-4" />
             </Button>
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -402,11 +412,10 @@ export default function ConfiguracoesPage() {
                 <Button
                   key={tab.id}
                   variant={activeTab === tab.id ? "default" : "ghost"}
-                  className={`w-full justify-start gap-3 ${
-                    activeTab === tab.id
+                  className={`w-full justify-start gap-3 ${activeTab === tab.id
                       ? "bg-sidebar-primary text-sidebar-primary-foreground"
                       : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                  }`}
+                    }`}
                   onClick={() => setActiveTab(tab.id)}
                 >
                   <Icon className="w-4 h-4" />
