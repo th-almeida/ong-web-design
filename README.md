@@ -51,4 +51,5 @@ npm run dev
 ```
 
 **License**
+
 This project is for educational purposes and does not have a commercial license. Use freely for learning and testing.
