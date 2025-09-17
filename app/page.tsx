@@ -33,6 +33,7 @@ export default function SistemaEducacionalONG() {
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
   const [telaAtiva, setTelaAtiva] = useState("configuracoes")
+  const [abaConfiguracoes, setAbaConfiguracoes] = useState("seguranca")
 
   const handleLogout = () => {
     setEmail("")
@@ -405,10 +406,11 @@ export default function SistemaEducacionalONG() {
 
   useEffect(() => {
     setTelaAtiva("configuracoes")
+    setAbaConfiguracoes("seguranca")
   }, [])
 
   if (telaAtiva === "configuracoes") {
-    return <ConfiguracoesPage onNavigateBack={handleVoltarConfiguracoes} />
+    return <ConfiguracoesPage onNavigateBack={handleVoltarConfiguracoes} activeTab={abaConfiguracoes} />
   }
 
   return (

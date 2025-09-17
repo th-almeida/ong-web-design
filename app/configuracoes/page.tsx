@@ -14,10 +14,11 @@ import { useState } from "react"
 
 interface ConfiguracoesPageProps {
   onNavigateBack?: () => void
+  activeTab?: string
 }
 
-export default function ConfiguracoesPage({ onNavigateBack }: ConfiguracoesPageProps) {
-  const [activeTab, setActiveTab] = useState("perfil")
+export default function ConfiguracoesPage({ onNavigateBack, activeTab }: ConfiguracoesPageProps) {
+  const [activeTabState, setActiveTabState] = useState(activeTab || "perfil")
   const [showCurrentPassword, setShowCurrentPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
@@ -411,12 +412,12 @@ export default function ConfiguracoesPage({ onNavigateBack }: ConfiguracoesPageP
               return (
                 <Button
                   key={tab.id}
-                  variant={activeTab === tab.id ? "default" : "ghost"}
-                  className={`w-full justify-start gap-3 ${activeTab === tab.id
+                  variant={activeTabState === tab.id ? "default" : "ghost"}
+                  className={`w-full justify-start gap-3 ${activeTabState === tab.id
                       ? "bg-sidebar-primary text-sidebar-primary-foreground"
                       : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                     }`}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => setActiveTabState(tab.id)}
                 >
                   <Icon className="w-4 h-4" />
                   {tab.label}
@@ -428,10 +429,10 @@ export default function ConfiguracoesPage({ onNavigateBack }: ConfiguracoesPageP
 
         {/* Conteúdo Principal */}
         <main className="flex-1 p-6 max-w-4xl">
-          {activeTab === "perfil" && renderPerfil()}
-          {activeTab === "seguranca" && renderSeguranca()}
-          {activeTab === "notificacoes" && renderNotificacoes()}
-          {activeTab === "aparencia" && renderAparencia()}
+          {activeTabState === "perfil" && renderPerfil()}
+          {activeTabState === "seguranca" && renderSeguranca()}
+          {activeTabState === "notificacoes" && renderNotificacoes()}
+          {activeTabState === "aparencia" && renderAparencia()}
         </main>
       </div>
     </div>
