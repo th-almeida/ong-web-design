@@ -32,7 +32,7 @@ export default function SistemaEducacionalONG() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
-  const [telaAtiva, setTelaAtiva] = useState("atividades")
+  const [telaAtiva, setTelaAtiva] = useState("configuracoes")
 
   const handleLogout = () => {
     setEmail("")
@@ -404,8 +404,12 @@ export default function SistemaEducacionalONG() {
   )
 
   useEffect(() => {
-    setTelaAtiva("atividades")
+    setTelaAtiva("configuracoes")
   }, [])
+
+  if (telaAtiva === "configuracoes") {
+    return <ConfiguracoesPage onNavigateBack={handleVoltarConfiguracoes} />
+  }
 
   return (
     <div className="min-h-screen bg-background">
