@@ -32,7 +32,7 @@ export default function SistemaEducacionalONG() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
-  const [telaAtiva, setTelaAtiva] = useState("dashboard")
+  const [telaAtiva, setTelaAtiva] = useState("calendario")
 
   const handleLogout = () => {
     setEmail("")
