@@ -32,7 +32,7 @@ export default function SistemaEducacionalONG() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
-  const [telaAtiva, setTelaAtiva] = useState("alunos")
+  const [telaAtiva, setTelaAtiva] = useState("atividades")
 
   const handleLogout = () => {
     setEmail("")
@@ -404,7 +404,7 @@ export default function SistemaEducacionalONG() {
   )
 
   useEffect(() => {
-    setTelaAtiva("alunos")
+    setTelaAtiva("atividades")
   }, [])
 
   return (
