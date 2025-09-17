@@ -32,7 +32,7 @@ export default function SistemaEducacionalONG() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [rememberMe, setRememberMe] = useState(false)
-  const [telaAtiva, setTelaAtiva] = useState("calendario")
+  const [telaAtiva, setTelaAtiva] = useState("alunos")
 
   const handleLogout = () => {
     setEmail("")
@@ -402,6 +402,10 @@ export default function SistemaEducacionalONG() {
       </div>
     </div>
   )
+
+  useEffect(() => {
+    setTelaAtiva("alunos")
+  }, [])
 
   return (
     <div className="min-h-screen bg-background">
